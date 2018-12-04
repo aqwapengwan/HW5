@@ -34,23 +34,19 @@ private:
 	void DeleteTree(Node<T>*p);
 };
 
-//constructor
 template<class T> BST<T>::BST() {
 	root = NULL;
 }
 
-//destructor
 template<class T> BST<T>::~BST() {
 	DeleteTree(root);
 	root = NULL;
 }
 
-//public print in-order
 template<class T> void BST<T>::PrintInOrder() {
 	PrintInOrder(root);
 }
 
-//private print in-order
 template<class T> void BST<T>::PrintInOrder(Node<T>* p) {
 	if(p != NULL) {
 		PrintInOrder(p->lessThan);
@@ -59,12 +55,10 @@ template<class T> void BST<T>::PrintInOrder(Node<T>* p) {
 	}
 }
 
-//public print pre-order
 template<class T> void BST<T>::PrintPreOrder() {
 	PrintPreOrder(root);
 }
 
-//private print pre-order
 template<class T> void BST<T>::PrintPreOrder(Node<T>*p) {
 	if(p != NULL) {
 		cout << p->data << " ";
@@ -73,12 +67,10 @@ template<class T> void BST<T>::PrintPreOrder(Node<T>*p) {
 	}
 }
 
-//public print post-order
 template<class T> void BST<T>::PrintPostOrder() {
 	PrintPostOrder(root);
 }
 
-//public print post-order
 template<class T> void BST<T>::PrintPostOrder(Node<T>*p) {
 	if(p != NULL) {
 		PrintPostOrder(p->lessThan);
@@ -87,12 +79,10 @@ template<class T> void BST<T>::PrintPostOrder(Node<T>*p) {
 	}
 }
 
-//public insert
 template<class T> void BST<T>::Insert(T& item) {
 	Insert(item, root);
 }
 
-//private insert
 template<class T> void BST<T>::Insert(T& item, Node<T>*&p) {
 	if(p == NULL) {
 		p = new Node<T>;
@@ -106,7 +96,6 @@ template<class T> void BST<T>::Insert(T& item, Node<T>*&p) {
 	}
 }
 
-//public search
 template<class T> T BST<T>::Search(T& item) {
 	Node<T>* n = Search(item, root);
 	if(n != NULL)
@@ -115,7 +104,6 @@ template<class T> T BST<T>::Search(T& item) {
 	return item;
 }
 
-//private search
 template<class T> Node<T>* BST<T>::Search(T& item, Node<T>*p) {
 	if(p == NULL)
 		return NULL;
@@ -127,7 +115,6 @@ template<class T> Node<T>* BST<T>::Search(T& item, Node<T>*p) {
 	return p;
 }
 
-//maximum for finding height
 template<class T> int BST<T>::Maximum(int a, int b) {
 	if(a > b)
 		return a;
@@ -135,12 +122,10 @@ template<class T> int BST<T>::Maximum(int a, int b) {
 		return b;
 }
 
-//find maximum node public
 template<class T> T BST<T>::FindMax(T& e) {
 	return FindMax(e, root);
 }
 
-//find maximum node private
 template<class T> T BST<T>::FindMax(T& e, Node<T> *p) {
 	if(p == NULL)
 		return e;
@@ -151,12 +136,10 @@ template<class T> T BST<T>::FindMax(T& e, Node<T> *p) {
 		return FindMax(e, p->greaterThan);
 }
 
-//find minimum node public
 template<class T> T BST<T>::FindMin(T& e) {
 	return FindMin(e, root);
 }
 
-//find minimum node private
 template<class T> T BST<T>::FindMin(T& e, Node<T> * p) {
 	if(p == NULL)
 		return e;
@@ -167,12 +150,10 @@ template<class T> T BST<T>::FindMin(T& e, Node<T> * p) {
 		return FindMin(e, p->lessThan);
 }
 
-//find height of tree public
 template<class T> int BST<T>::Height() {
 	return Height(root);
 }
 
-//find height of tree private
 template<class T> int BST<T>::Height(Node<T>*p) {
 	if(p == NULL)
 		return -1;
@@ -180,12 +161,10 @@ template<class T> int BST<T>::Height(Node<T>*p) {
 	return 1 + Maximum(Height(p->lessThan), Height(p->greaterThan));
 }
 
-//delete node public
 template<class T> void BST<T>::DeleteNode(T& item) {
 	DeleteNode(item, root, NULL);
 }
 
-//delete node private
 template<class T> void BST<T>::DeleteNode(T& item, Node<T> *&p) {
 	//item not found, do nothing
 	if(p == NULL)
@@ -211,7 +190,6 @@ template<class T> void BST<T>::DeleteNode(T& item, Node<T> *&p) {
 	}
 }
 
-//delete tree
 template<class T> void BST<T>::DeleteTree(Node<T>*p) {
 	if(p != NULL) {
 		DeleteTree(p->lessThan);

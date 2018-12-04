@@ -33,7 +33,6 @@ template<class T> LinkedList<T>::LinkedList() {
 	tail = NULL;
 }
 
-//reads through linked list to return item
 template<class T> T *LinkedList<T>::iterator(node<T> **p) {
 	node<T> *q;
 	if(*p == NULL)
@@ -48,7 +47,6 @@ template<class T> T *LinkedList<T>::iterator(node<T> **p) {
 	return item;
 }
 
-//inserts at specific node in list
 template <class T> node<T> *LinkedList<T>::insertAt(node<T> *p, T& item) {
 	if(p == tail) {
 		return LinkedList<T>::insertLast(item);
@@ -110,7 +108,6 @@ template<class T> bool LinkedList<T>::deleteNode(T& item) {
 	return true;
 }
 
-//delete node after given node
 template<class T> void LinkedList<T>::deleteNext(node<T> *p) {
 	if(p == NULL) {
 		p = head;
@@ -135,7 +132,7 @@ template<class T> void LinkedList<T>::deleteList() {
 	tail = NULL;
 }
 
-//search and return node 
+//search and return
 template<class T> node<T>* LinkedList<T>::searchNode(T& item, node<T> **previous) {
 	node<T> *p = head;
 	node<T> *x = NULL;
@@ -153,7 +150,6 @@ template<class T> node<T>* LinkedList<T>::searchNode(T& item, node<T> **previous
 	return NULL;
 }
 
-//search and return data from node given item
 template <class T> T* LinkedList<T>::search(T& item) {
 	node<T> *p = searchNode(item);
 	if(p == NULL)

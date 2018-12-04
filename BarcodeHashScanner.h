@@ -1,18 +1,28 @@
-class UpcHashTable : public HashTable<UPC> {
+template <class T> class BarcodeHashScanner : public Scanner<T> {
 public:
-	UpcHashTable(int size) : HashTable(size) {}
-	uint32_t Hash(UPC *);
-};
-
-
-class BarcodeHashScanner {
-public:
-	typedef bool ReadFunc(UPC *);
-	BarcodeHashScanner(ReadFunc reader);
-	int ReadDatabase();
-	UPC FindItem(int64_t upc);
+	typedef bool ReadFunc(T *);
+	BarcodeHashScanner(HashTable<T> *hashTable) : table(hashTable) {}
+	int ReadDatabase(ReadFunc *databaseLineReader);
+	T *Scan(T *item);
 
 private:
-	ReadFunc *DatabaseLineReader;
-	UpcHashTable table = UpcHashTable(1000);
+	HashTable<T> *table;
 };
+
+template <class T> int BarcodeHashScanner<T>::ReadDatabase(ReadFunc *databaseLineReader) {
+	T item;
+	int count = 0;
+	while(databaseLineReader(&item)) {
+		table->Insert(&item);
+		count++;
+	}
+
+	return count;
+}
+
+template <class T> T *BarcodeHashScanner<T>::Scan(T *item) {
+	if(!table->Get(item))
+		return NULL;
+
+	return item;
+}

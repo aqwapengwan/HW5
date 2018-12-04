@@ -4,10 +4,10 @@ using namespace std;
 #include <string.h>
 #include <iostream>
 
-#include "UPC.h"
+#include "Product.h"
 
 //constructor
-UPC::UPC(int64_t code, char *desc) {
+Product::Product(int64_t code, char *desc) {
 	upc = code;
 	int n = strlen(desc) + 1;
 	description = new char[n];
@@ -15,20 +15,20 @@ UPC::UPC(int64_t code, char *desc) {
 }
 
 //copy constructor
-UPC::UPC(const UPC &o) {
+Product::Product(const Product &o) {
 	description = NULL;
 	*this = o;
 }
 
-//stores description of item
-void UPC::SetDescription(const char *desc) {
+//sets product description
+void Product::SetDescription(const char *desc) {
 	int n = strlen(desc) + 1;
 	description = new char[n];
 	memcpy(description, desc, n);
 }
 
 //assignment operator
-void UPC::operator=(const UPC& o) {
+void Product::operator=(const Product& o) {
 	delete description;
 
 	upc = o.upc;
@@ -41,7 +41,7 @@ void UPC::operator=(const UPC& o) {
 }
 
 //out stream operator
-ostream& operator<<(ostream& ob, UPC& item) {
+ostream& operator<<(ostream& ob, Product& item) {
 	ob << item.upc << ' ' << item.description << endl;
 	return ob;
 }
